@@ -102,6 +102,7 @@ public class OrangeHRMTestCases extends BaseClass {
 
 		hp.headerList();
 		hp.jobList();
-		hp.addEmpStatusBtn(prop.getProperty("empStatus"));
+		hp.addEmpStatusBtn();
+	hp.deleteElementfromList();
 	}
 }
