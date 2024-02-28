@@ -7,18 +7,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
 import com.orangehrm.baseclass.BaseClass;
 
-import io.opentelemetry.exporter.logging.SystemOutLogRecordExporter;
 
 public class HeaderPage extends BaseClass {
-	
-	//public static addempStaus emp;
-
 	String headerName = "Job";
 	String jobOption = "Employment Status";
 	String deleteElement = "Test Emp Status";
+	
+	Actions action = new Actions(driver);
 
 	public HeaderPage() {
 		PageFactory.initElements(driver, this);
@@ -41,17 +38,14 @@ public class HeaderPage extends BaseClass {
 
 	@FindBy(xpath = "//div[@style='flex-basis: 80%;']")
 	List<WebElement> listofElements;
-	
 
 	@FindBy(xpath = "//i[@class='oxd-icon bi-trash']")
 	WebElement deleteListElement;
-	Actions action = new Actions(driver);
+	
 
 	@FindBy(xpath = "//i[@class='oxd-icon bi-trash oxd-button-icon']")
 	WebElement delete;
 
-	
-	
 	public void headerList() {
 		for (int i = 0; i < listofHeader.size(); i++) {
 			// System.out.println(listofHeader.get(1).getText());
@@ -79,46 +73,47 @@ public class HeaderPage extends BaseClass {
 
 	}
 
-
 	public void deleteElementfromList() throws InterruptedException {
 		for (int i = 1; i < listofElements.size(); i++) {
+			
 			System.out.println(listofElements.get(i).getText());
-			if(listofElements.get(i).getText().equals(deleteElement)) {
+			
+			if (listofElements.get(i).getText().equals(deleteElement)) {
+				
 				System.out.println("Demooooooooooooooo" + listofElements.get(i).getText());
-				driver.findElement(By.xpath("//div["+i+"]/div/div[1]/div/div/label/span/i")).click();
+				
+				WebElement checkbox = driver.findElement(By.xpath("//div[" + i + "]/div/div[1]/div/div/label/span/i"));
+				action.moveToElement(checkbox).click().build().perform();
+				
 				Thread.sleep(3000);
-				driver.findElement(By.xpath("//div["+i+"]/div/div[3]/div/button[1]/i")).click();
-				//checkBox.click();
+				driver.findElement(By.xpath("//div[" + i + "]/div/div[3]/div/button[1]/i")).click();
 				Thread.sleep(4000);
 				delete.click();
-				
+
 			}
-		
-	}
+
+		}
 	}
 }
 
-	
-	
-	/*
-	 * public void deleteElementfromList() throws InterruptedException { for (int i
-	 * = 0; i < listofElements.size(); i++) { //if
-	 * (listofElements.get(i).getText().contains(deleteElement)) {
-	 * System.out.println(listofElements.get(i).getText());
-	 * 
-	 * // action.scrollToElement(deleteListElement).build().perform();
-	 * Thread.sleep(4000);
-	 * 
-	 * 
-	 * checkBox.click(); 	
-	 * 
-	 * 
-	 * 
-	 * delete.click();
-	 * 
-	 * }
-	 * 
-	 * 
-	 * }
-	 */
-	
+/*
+ * public void deleteElementfromList() throws InterruptedException { for (int i
+ * = 0; i < listofElements.size(); i++) { //if
+ * (listofElements.get(i).getText().contains(deleteElement)) {
+ * System.out.println(listofElements.get(i).getText());
+ * 
+ * // action.scrollToElement(deleteListElement).build().perform();
+ * Thread.sleep(4000);
+ * 
+ * 
+ * checkBox.click();
+ * 
+ * 
+ * 
+ * delete.click();
+ * 
+ * }
+ * 
+ * 
+ * }
+ */

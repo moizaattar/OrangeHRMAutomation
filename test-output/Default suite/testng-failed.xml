@@ -6,7 +6,7 @@
       <class name="com.orangehrm.testcases.OrangeHRMTestCases">
         <methods>
           <include name="setUp"/>
-          <include name="headerAdmin"/>
+          <include name="tabPIM"/>
         </methods>
       </class> <!-- com.orangehrm.testcases.OrangeHRMTestCases -->
     </classes>

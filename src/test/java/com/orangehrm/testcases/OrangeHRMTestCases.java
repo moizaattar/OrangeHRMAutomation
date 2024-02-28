@@ -1,5 +1,6 @@
 package com.orangehrm.testcases;
 
+import java.awt.AWTException;
 import java.io.IOException;
 
 import org.testng.annotations.BeforeTest;
@@ -10,6 +11,7 @@ import com.orangehrm.pageobjects.AdminCreationPage;
 import com.orangehrm.pageobjects.AdminSearchPage;
 import com.orangehrm.pageobjects.HeaderPage;
 import com.orangehrm.pageobjects.LoginPage;
+import com.orangehrm.pageobjects.PIMPage;
 
 public class OrangeHRMTestCases extends BaseClass {
 
@@ -59,13 +61,9 @@ public class OrangeHRMTestCases extends BaseClass {
 		asp.searchEmpStatus();
 		asp.searchBtn();
 		Thread.sleep(5000);
-		
-		//sasp.allTableRecords();
 		asp.editRecord(prop.getProperty("updatedPassword"), prop.getProperty("updatedPassword"));
 	}
 
-	
-	
 	// Search for newly created Admin
 	@Test
 	public void searchcreateddAdmin() throws IOException, InterruptedException {
@@ -84,16 +82,17 @@ public class OrangeHRMTestCases extends BaseClass {
 		asp.searchEmpStatus();
 		asp.searchBtn();
 		Thread.sleep(5000);
-		
-		//sasp.allTableRecords();
+
+		// sasp.allTableRecords();
 		asp.editRecord(prop.getProperty("updatedPassword"), prop.getProperty("updatedPassword"));
 	}
 
+	
 	@Test
 	public void headerAdmin() throws InterruptedException {
 		LoginPage lp = new LoginPage();
 		HeaderPage hp = new HeaderPage();
-		
+
 		lp.uName(prop.getProperty("username"));
 		lp.uPassword(prop.getProperty("password"));
 		lp.logInBtn();
@@ -103,6 +102,25 @@ public class OrangeHRMTestCases extends BaseClass {
 		hp.headerList();
 		hp.jobList();
 		hp.addEmpStatusBtn();
-	hp.deleteElementfromList();
+		hp.deleteElementfromList();
 	}
+
+	// PIM Related Test
+	@Test
+	public void tabPIM() throws InterruptedException, AWTException {
+		LoginPage lp = new LoginPage();
+		PIMPage pim = new PIMPage();
+
+		lp.uName(prop.getProperty("username"));
+		lp.uPassword(prop.getProperty("password"));
+		lp.logInBtn();
+		Thread.sleep(3000);
+		pim.allElements();
+		pim.configuration();
+		pim.importData();
+		Thread.sleep(3000);
+		pim.employeeListTab(prop.getProperty("PIMEmpName"), prop.getProperty("PIMEmpId"));
+		
+	}
+
 }
