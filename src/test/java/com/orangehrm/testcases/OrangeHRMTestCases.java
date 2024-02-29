@@ -120,6 +120,8 @@ public class OrangeHRMTestCases extends BaseClass {
 		pim.importData();
 		Thread.sleep(3000);
 		pim.employeeListTab(prop.getProperty("PIMEmpName"), prop.getProperty("PIMEmpId"));
+		Thread.sleep(3000);
+		pim.reportsTab();
 		
 	}
 

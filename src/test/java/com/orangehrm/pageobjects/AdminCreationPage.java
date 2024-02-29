@@ -17,6 +17,9 @@ public class AdminCreationPage extends BaseClass {
 		PageFactory.initElements(driver, this);
 	}
 
+	@FindBy(xpath = "//i[@class='oxd-icon bi-chevron-left']")
+	WebElement button;
+	
 	//Create New Admin 
 	@FindBy(xpath = "//button//i[@class='oxd-icon bi-plus oxd-button-icon']")
 	WebElement addBtn;
@@ -44,7 +47,9 @@ public class AdminCreationPage extends BaseClass {
 	
 
 
-	public void addBtn() {
+	public void addBtn() throws InterruptedException {
+		//button.click();
+		//Thread.sleep(3000);
 		addBtn.click();
 	}
 
